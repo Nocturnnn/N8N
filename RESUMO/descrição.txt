@@ -1,0 +1,146 @@
+https://www.udemy.com/course/automacao-e-criacao-de-agentes-de-ia-com-n8n-n8n-completo/learn/lecture/52776693#overview
+
+Este curso foi criado para quem deseja dominar o n8n, uma das ferramentas de automação mais poderosas e flexíveis do mercado. Com foco em integrações com inteligência artificial, APIs modernas e aplicações práticas, você aprenderá desde os fundamentos até a criação de agentes inteligentes que automatizam tarefas complexas. O curso é ideal para iniciantes e profissionais que desejam ampliar suas habilidades em automação, IA aplicada e integração de sistemas.
+
+
+
+Conteúdo Programático:
+
+1. Conceitos Iniciais do n8n
+
+Você começará entendendo os conceitos básicos que formam a base do n8n:
+
+O que são nós (nodes) e como funcionam
+
+Diferença entre Trigger Node e Action Node
+
+Uso de condições (Condition Node) para ramificar fluxos
+
+Como criar SubWorkflows reutilizáveis
+
+Práticas recomendadas para organização e estruturação de workflows
+
+
+
+2. n8n Cloud vs Instância Local com Acesso Remoto via Ngrok
+
+Aprenda a configurar o ambiente de desenvolvimento ideal:
+
+Diferenças entre n8n Cloud e instalação local
+
+Instalação local com Node.js e NPM
+
+Criação de túnel seguro com Ngrok para expor seu n8n local na web
+
+Como testar e desenvolver com mais segurança e controle
+
+
+
+3. Integração com VPS da Hostinger
+
+Configure sua instância n8n em produção:
+
+Instalação do n8n em uma VPS Linux (ex: Ubuntu)
+
+Acesso remoto via SSH e comandos essenciais
+
+Configuração de persistência e inicialização automática do n8n
+
+Dicas de segurança e deploy estável
+
+
+
+4. Workflows de Integração com OpenAI
+
+Crie automações inteligentes com os recursos da OpenAI:
+
+Conexão com a API do ChatGPT / GPT-4
+
+Geração e análise de imagens com DALL·E e CLIP
+
+Criação de áudios com text-to-speech
+
+Classificação e organização de dados com IA generativa
+
+Exemplos práticos para atendimento, marketing, e análise de conteúdo
+
+
+
+5. Workflows de Integração com Deepseek
+
+Explore o poder da IA para texto:
+
+Conexão com a API da Deepseek
+
+Criação de workflows para análise de sentimentos
+
+Classificação de texto com critérios personalizados
+
+Aplicações práticas para áreas como RH, SAC e análise de mercado
+
+
+
+6. Integrações e Gerenciamento de Credenciais
+
+Conecte o n8n aos serviços que você já usa:
+
+Autenticação e uso de credenciais seguras
+
+Integração com ferramentas como Google Sheets, Slack, Supabase, Telegram e outros
+
+Envio automático de mensagens, notificações, relatórios e dados entre plataformas
+
+
+
+7. Criação de Agentes de IA com n8n
+
+Aprofunde-se na criação de automações com comportamento inteligente:
+
+Como criar agentes autônomos que operam com base em IA
+
+Exemplos práticos:
+
+Agente de gerenciamento de banco de dados (consultas, inserções, relatórios automáticos)
+
+Agente de previsão do tempo com alertas personalizados
+
+Agente de análise de comportamento de usuários e mais
+
+Lógica de decisão, looping e agendamento inteligente
+
+
+
+Ao final do curso, você será capaz de:
+
+Criar automações complexas com IA sem escrever código
+
+Integrar n8n com APIs e ferramentas modernas
+
+Desenvolver agentes inteligentes para tarefas repetitivas ou análises avançadas
+
+Implantar o n8n de forma segura em produção ou ambientes de teste
+
+O que você aprenderá
+Dominar os conceitos fundamentais do n8n
+Instalação e configuração local e remota do N8N
+Integrar o n8n com IA e APIs modernas
+Automatizar processos com serviços populares
+Construir agentes de IA com n8n, sem escrever código
+Criar soluções práticas e aplicáveis no dia a dia
+Agentes de IA para Gerenciamento de banco de dados (Data Table, NocoDB, Postgres, etc)
+Agentes de IA que rodam no Telegram e que se conecta no Supabase
+Fluxos de RAG com Pinecone, Supabase e Postgres
+Integração com Airtable como banco de dados visual
+Integração com NocoDB como banco de dados visual
+Construção de automações completas com Make
+Fundamentos do Langflow para Agentes de IA
+Criação de Chatbots Tradicionais com TypeBot
+Agentes de IA no Whatsapp com integração ao Evolution API
+Há algum requisito ou pré-requisito para o curso?
+Interesse em automação e inteligência artificial — Vontade de aprender a integrar ferramentas e criar soluções automatizadas usando IA.
+Acesso a um computador com conexão à internet — Para instalar ferramentas, configurar ambientes e acessar plataformas online.
+Conta em serviços utilizados — Como OpenAI, Google, ou outras plataformas para aproveitar melhor as integrações práticas.
+Para quem é este curso:
+Iniciantes que desejam aprender automação — Pessoas sem experiência prévia que querem começar a dominar o n8n e automações inteligentes.
+Profissionais de tecnologia e TI — Desenvolvedores, analistas e administradores que querem ampliar suas habilidades com integrações e automação avançada.
+Entusiastas de inteligência artificial — Interessados em aplicar IA em processos automatizados, sem necessariamente precisar programar.

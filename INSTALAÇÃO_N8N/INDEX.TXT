@@ -1,0 +1,10 @@
+para fazer a instalação de forma local sem precisar pagar nada:
+1. instalar o node.js
+2. abrir o cmd como administrador
+3. usar o comando npm i -g n8n
+4. digite n8n para abrir ele de forma local e digite "o"
+5. para passar o n8n de local para público na internet utiliza-se Ngrok
+6. faça uma conta no Ngrok
+7. intale o Ngrok (usei microsoft store)
+8. execute esse comando no terminal ngrok http (sua porta)
+9. só abrir e ser feliz

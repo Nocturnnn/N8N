@@ -1,0 +1,13 @@
+Workflow significa fluxo de trabalho — é a sequência de etapas, tarefas ou processos que uma atividade segue do início até a conclusão.
+
+💡 Principais pontos:
+
+Define quem faz o quê e em qual ordem.
+
+Pode ser manual (feito por pessoas) ou automatizado (feito por sistemas, como no n8n ou em plataformas de automação).
+
+Ajuda a organizar, padronizar e agilizar processos dentro de uma empresa.
+
+Melhora a produtividade e reduz erros, pois torna o processo mais claro e repetível.
+
+👉 Em resumo: workflow é o passo a passo estruturado de um processo, usado para otimizar e automatizar tarefas em projetos, empresas ou sistemas.

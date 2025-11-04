@@ -1,0 +1,13 @@
+O n8n é uma ferramenta de automação de fluxos de trabalho (workflow automation), parecida com o Zapier ou Make, mas de código aberto (open source).
+
+💡 Principais pontos:
+
+Permite criar automações sem precisar programar, conectando aplicativos e serviços (como Gmail, Discord, Google Sheets, APIs, etc.).
+
+Usa uma interface visual, onde você arrasta e conecta “nós” (nodes) que representam ações ou eventos.
+
+Pode ser hospedado localmente ou na nuvem, dando mais controle sobre dados e personalização.
+
+Suporta integrações complexas, incluindo lógica condicional, loops, e execução de código personalizado (JavaScript).
+
+👉 Em resumo: o n8n é uma plataforma visual que permite automatizar tarefas e integrar sistemas de forma flexível e personalizável, sem depender de serviços pagos ou fechados.

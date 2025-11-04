@@ -1,0 +1,23 @@
+O Docker é uma plataforma que permite criar, empacotar e executar aplicações em contêineres.
+
+Um contêiner é como uma "caixa" leve e isolada que contém tudo o que o software precisa para
+funcionar — código, bibliotecas, dependências e configurações
+ — garantindo que ele rode da mesma forma em qualquer ambiente,
+  seja no computador do desenvolvedor, em um servidor ou na nuvem.
+
+💡 Principais pontos sobre o Docker:
+
+Padronização: evita o famoso problema de “funciona na minha máquina, mas não no servidor”.
+
+Leveza: os contêineres compartilham o mesmo sistema operacional,
+ o que os torna mais rápidos e leves que máquinas virtuais.
+
+Portabilidade: um contêiner criado em um sistema pode ser executado em outro sem alterações.
+
+Facilidade de deploy: simplifica a entrega e atualização de aplicações.
+
+Escalabilidade: usado amplamente em ambientes de nuvem e DevOps para orquestração com
+ ferramentas como Docker Compose e Kubernetes.
+
+👉 Em resumo: o Docker é uma ferramenta que automatiza o ambiente de execução de aplicações,
+ tornando o desenvolvimento e a implantação mais rápidos, consistentes e eficientes.

@@ -1,0 +1,115 @@
+🧩 O que são “Nodes” no n8n
+
+👉 Nodes (ou “nós”) são os blocos de construção dos workflows no n8n.
+Cada node faz uma ação específica, como:
+
+Buscar dados de uma API
+
+Enviar um e-mail
+
+Fazer uma condição (“se / senão”)
+
+Rodar código JavaScript
+
+Criar ou ler dados num banco de dados
+
+Esperar um tempo antes de continuar
+
+Você conecta vários nodes para criar fluxos automáticos — um workflow.
+
+⚙️ Tipos de Nodes principais
+1️⃣ Trigger Nodes (gatilhos)
+
+São os que iniciam o workflow automaticamente.
+Exemplo:
+
+Webhook Trigger → quando recebe uma requisição HTTP
+
+Cron Trigger → em horários programados
+
+IMAP Email Trigger → quando chega um e-mail novo
+
+Telegram Trigger → quando recebe uma mensagem
+
+🧠 Pensa neles como o “botão de início” da automação.
+
+2️⃣ Action Nodes (ações)
+
+Executam tarefas específicas depois do gatilho.
+Exemplo:
+
+HTTP Request → faz chamadas a APIs externas
+
+Send Email → envia e-mails
+
+Google Sheets → cria, lê ou edita planilhas
+
+Notion / Discord / Slack → posta mensagens, atualiza páginas etc.
+
+3️⃣ Logic Nodes (lógica condicional)
+
+Controlam como o fluxo segue.
+Exemplo:
+
+IF → cria condições (“se / senão”)
+
+Switch → vários caminhos possíveis
+
+Merge / SplitInBatches → junta ou divide dados
+
+Wait → pausa o fluxo por um tempo
+
+🧩 Eles são como os “semáforos” e “curvas” do seu fluxo.
+
+4️⃣ Function Nodes (personalizados com código)
+
+Permitem rodar JavaScript dentro do workflow.
+
+Function → roda um bloco de código e manipula dados
+
+Function Item → executa código em cada item da lista
+
+🧠 Ideal pra quando você precisa fazer algo que os nodes prontos não fazem.
+
+5️⃣ Data Nodes (banco de dados e arquivos)
+
+Servem pra salvar, ler ou manipular dados.
+Exemplo:
+
+PostgreSQL / MySQL / SQLite → interagem com bancos
+
+Read Binary File / Write Binary File → lidar com arquivos locais
+
+Spreadsheet File → ler e escrever planilhas
+
+6️⃣ Utility Nodes (apoio)
+
+Ajudam com tarefas gerais, como:
+
+Set → criar ou alterar dados manualmente
+
+Move Binary Data → converter arquivos
+
+NoOp → não faz nada (usado pra organizar o fluxo)
+
+HTTP Request → integrar com qualquer serviço via API
+
+🧠 Como eles se conectam
+
+Cada node recebe dados do anterior e gera saída para o próximo.
+
+Essa passagem de dados é chamada de “execution data”.
+
+Você pode visualizar a saída de cada node na aba “Output”.
+
+💡 Exemplo prático
+
+Imagine um workflow que envia uma mensagem no Telegram quando um novo lead chega:
+
+Webhook Trigger → recebe os dados do lead
+
+IF Node → verifica se o lead tem e-mail
+
+HTTP Request → envia os dados para o CRM
+
+Telegram Node → manda uma mensagem avisando

@@ -1,0 +1,106 @@
+{
+  "name": "HTTP_JSON",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "fd95d4e2-dcca-46fe-a2f1-0761ae6f4024",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "http://jsonplaceholder.typicode.com/users",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "6f60be94-bb5f-4675-9520-9eea73b112ed",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6251ce48-a573-4e3c-870a-fd41e30918c9",
+              "name": "email",
+              "value": "={{ $json.email }}",
+              "type": "string"
+            },
+            {
+              "id": "7506d5c2-e291-4042-a246-ed7ade4b473f",
+              "name": "city",
+              "value": "={{ $json.address.city }}",
+              "type": "string"
+            },
+            {
+              "id": "807fe1df-7865-43bf-a938-8287bac68044",
+              "name": "company",
+              "value": "={{ $json.company.name }}",
+              "type": "string"
+            },
+            {
+              "id": "92825d9d-d822-4bc7-86ad-50679685d383",
+              "name": "field",
+              "value": "={{ $input.item.json }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "115634d9-5c10-46d0-80dd-4fe98616b1d1",
+      "name": "FILTRO DE DADOS"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "FILTRO DE DADOS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "8dd47cee-e49f-4b98-bd60-c7d7e92f86a0",
+  "meta": {
+    "instanceId": "47b6c29005312cd71f974d85ca071e587d52d442a7ce04e1a418df7382c639ca"
+  },
+  "id": "8DSlHdobw8fmQI4E",
+  "tags": []
+}

@@ -1,0 +1,158 @@
+{
+  "name": "LÓGICA BÁSICA",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "28fd2ef3-b25e-44e9-9a57-ae64daf51d93",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "getAllPeople"
+      },
+      "type": "n8n-nodes-base.n8nTrainingCustomerDatastore",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "7a762c26-839e-4087-b7ad-33629dc81c0b",
+      "name": "Customer Datastore (n8n training)"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "eb952295-f5b5-4ede-813c-09480f7bc507",
+              "name": "name",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "c8224b51-3376-4913-b9a9-b37d5287e794",
+              "name": "email",
+              "value": "={{ $json.email }}",
+              "type": "string"
+            },
+            {
+              "id": "8bdcd890-e083-49f2-9c3d-7cde48ecb649",
+              "name": "notes",
+              "value": "={{ $json.notes }}",
+              "type": "string"
+            },
+            {
+              "id": "d19db946-2570-4a2b-85f1-c5076c23bff8",
+              "name": "country",
+              "value": "={{ $json.country }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "65a59edf-cfdf-4c64-ba17-ab54151d345b",
+      "name": "FILTRO DE DADOS"
+    }
+  ],
+  "pinData": {
+    "Customer Datastore (n8n training)": [
+      {
+        "json": {
+          "id": "23423532",
+          "name": "Jay Gatsby",
+          "email": "gatsby@west-egg.com",
+          "notes": "Keeps asking about a green light??",
+          "country": "US",
+          "created": "1925-04-10"
+        }
+      },
+      {
+        "json": {
+          "id": "23423533",
+          "name": "José Arcadio Buendía",
+          "email": "jab@macondo.co",
+          "notes": "Lots of people named after him. Very confusing",
+          "country": "CO",
+          "created": "1967-05-05"
+        }
+      },
+      {
+        "json": {
+          "id": "23423534",
+          "name": "Max Sendak",
+          "email": "info@in-and-out-of-weeks.org",
+          "notes": "Keeps rolling his terrible eyes",
+          "country": "US",
+          "created": "1963-04-09"
+        }
+      },
+      {
+        "json": {
+          "id": "23423535",
+          "name": "Zaphod Beeblebrox",
+          "email": "captain@heartofgold.com",
+          "notes": "Felt like I was talking to more than one person",
+          "country": null,
+          "created": "1979-10-12"
+        }
+      },
+      {
+        "json": {
+          "id": "23423536",
+          "name": "Edmund Pevensie",
+          "email": "edmund@narnia.gov",
+          "notes": "Passionate sailor",
+          "country": "UK",
+          "created": "1950-10-16"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Customer Datastore (n8n training)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Customer Datastore (n8n training)": {
+      "main": [
+        [
+          {
+            "node": "FILTRO DE DADOS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "3482658a-a5ed-4f2b-8e65-fc599e8a498a",
+  "meta": {
+    "instanceId": "47b6c29005312cd71f974d85ca071e587d52d442a7ce04e1a418df7382c639ca"
+  },
+  "id": "SHvGfNLX2zi1esis",
+  "tags": []
+}

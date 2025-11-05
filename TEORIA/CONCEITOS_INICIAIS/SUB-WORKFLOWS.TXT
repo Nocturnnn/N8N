@@ -1,0 +1,158 @@
+🧩 O que é um Sub-Workflow
+
+Um Sub-Workflow é basicamente um outro workflow dentro do seu workflow principal.
+Em vez de repetir as mesmas ações várias vezes, você pode chamar um outro fluxo que faz aquela tarefa pra você.
+
+💡 Pense assim:
+
+É como uma função reutilizável — você cria uma vez e chama quando precisar,
+igual a function na programação.
+
+⚙️ Como funciona
+
+Você tem um workflow principal (por exemplo: “Automação de pedidos”)
+
+Dentro dele, você usa o node “Execute Workflow” (Executar Workflow)
+
+Esse node chama outro workflow do n8n (que você já criou antes)
+
+O sub-workflow pode receber dados do principal e retornar resultados
+
+🎯 Por que usar Sub-Workflows
+✅ 1. Reutilização de lógica
+
+Se você faz a mesma tarefa em vários fluxos, dá pra centralizar em um só.
+Exemplo:
+
+Um sub-workflow para enviar notificações
+
+Outro para formatar dados de planilha
+
+Outro para fazer login e pegar token de API
+
+Assim, você não repete código em todo lugar.
+
+✅ 2. Organização e limpeza
+
+Se o workflow principal está grande, você pode dividir ele em partes menores.
+Cada sub-workflow vira uma “caixa” separada, facilitando a manutenção.
+
+✅ 3. Execuções independentes
+
+Sub-workflows têm seu próprio histórico de execução.
+Você pode ver logs e erros separadamente, o que ajuda no debug.
+
+⚙️ Como criar um Sub-Workflow
+Passo a passo:
+
+1️⃣ Crie um novo workflow no n8n
+
+Dê um nome (ex: Formatar Dados Pedido)
+
+Deixe um node de entrada (Start Node)
+
+Faça as ações que ele deve executar
+
+Salve e ative
+
+2️⃣ No workflow principal, adicione o node:
+
+🔧 Execute Workflow (Executar Workflow)
+
+3️⃣ Nas configurações do node:
+
+Escolha o sub-workflow que você quer chamar
+
+(Opcional) Ative “Wait for completion” se quiser esperar o resultado antes de continuar
+
+Você pode passar dados de entrada (Input Data) pro sub-workflow
+
+📦 Passagem de dados
+
+O sub-workflow recebe os dados do node anterior como items.
+Ele pode processar, modificar ou gerar novos dados e devolver pro fluxo principal.
+
+Exemplo:
+
+O workflow principal envia:
+
+{
+  "pedido": "12345",
+  "valor": 150,
+  "cliente": "Mateus"
+}
+
+
+O sub-workflow formata e devolve:
+
+{
+  "mensagem": "Pedido #12345 de Mateus - R$150 processado com sucesso"
+}
+
+
+O workflow principal recebe e usa o resultado.
+
+🧠 Exemplos práticos
+💬 Exemplo 1 — Notificações centralizadas
+
+Você tem vários workflows (pedidos, estoque, entregas...)
+Todos chamam o mesmo Sub-Workflow “Enviar Mensagem Telegram”
+Assim, se quiser mudar o texto, você muda só em um lugar.
+
+💾 Exemplo 2 — Registrar logs
+
+Crie um sub-workflow “Salvar Log no Google Sheets”.
+Em cada fluxo principal, adicione o node Execute Workflow → Salvar Log
+Ele recebe:
+
+{ "workflow": "Pedidos", "status": "Sucesso", "data": "2025-11-05" }
+
+
+E grava automaticamente na planilha de logs.
+
+🧮 Exemplo 3 — Transformação de dados
+
+Você pode ter um sub-workflow só pra padronizar campos, como:
+
+Converter letras maiúsculas/minúsculas
+
+Gerar códigos automáticos
+
+Calcular valores ou taxas
+
+⚙️ Configurações úteis do Node “Execute Workflow”
+Opção	Descrição
+Workflow	Qual sub-workflow será chamado
+Wait for completion	Espera o sub terminar antes de seguir
+Pass Input Data	Envia os dados atuais como entrada
+Add Additional Fields → Execute Workflow ID	Pode usar ID em vez do nome
+Options → Timeout	Define tempo máximo de execução
+🚨 Cuidados importantes
+
+Evite loops infinitos
+Não deixe o sub-workflow chamar ele mesmo, ou você trava o n8n.
+
+Sub-workflows precisam estar salvos e ativos
+Se estiver desativado, o node não encontra ele.
+
+Verifique os dados de entrada/saída
+Se o sub-workflow não receber os campos esperados, ele pode falhar.
+
+🧱 Resumo visual
+[ Workflow Principal ]
+   ↓
+ [ Execute Workflow ]
+   ↓ chama ↓
+[ Sub-Workflow A ]
+   ↓ retorna ↓
+[ Resultado volta ao principal ]
+
+
+Se quiser, posso te mostrar um exemplo real de Sub-Workflow no n8n:
+
+Principal: “Gerar Pedido”
+
+Sub: “Gerar Mensagem de Confirmação”
+
+Posso montar esse exemplo em formato visual (ou JSON pra importar).
+Quer que eu monte pra você esse modelo passo a passo?

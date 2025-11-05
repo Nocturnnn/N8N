@@ -1,0 +1,93 @@
+{
+  "name": "ANÁLISE DE SENTIMENTOS COM AI",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        16
+      ],
+      "id": "cd40d3b6-f9a5-4de8-879e-841b86b7386c",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "inputText": "Embora o evento tenha sido bem organizado, não senti que trouxe algo realmente novo.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
+      "typeVersion": 1.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "6c45f20e-5f73-4a03-9eb1-5327a9085149",
+      "name": "Sentiment Analysis"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-120b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        208,
+        224
+      ],
+      "id": "e8c0b4c9-5ee1-4048-8d5d-6a606ac58466",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "QDCPtDhsHPkXkyVR",
+          "name": "Groq account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Sentiment Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Sentiment Analysis",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f07c424c-af99-47fd-bbc5-6bf13a1b256c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "47b6c29005312cd71f974d85ca071e587d52d442a7ce04e1a418df7382c639ca"
+  },
+  "id": "NRM6PP1riVfHJzwx",
+  "tags": [
+    {
+      "name": "Groq",
+      "id": "gBqFLAgnubzyS6SE",
+      "updatedAt": "2025-11-05T19:06:06.289Z",
+      "createdAt": "2025-11-05T19:06:06.289Z"
+    }
+  ]
+}

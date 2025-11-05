@@ -1,0 +1,65 @@
+{
+  "name": "FORM_SUBMISSION",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Formulário - Soliciatação de Suporte Técnico",
+        "formDescription": "formulário para apresentar as ordens de serviço do suporte técnico da empresa de ti X.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "nome",
+              "placeholder": "Nome do solicitante",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Prioridade",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Alta"
+                  },
+                  {
+                    "option": "Média"
+                  },
+                  {
+                    "option": "Baixa"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Data",
+              "fieldType": "date",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "1df720b1-687a-446f-8563-c91f737a37c3",
+      "name": "On form submission",
+      "webhookId": "b84e3111-9529-470f-9e0b-9970a4a52d30"
+    }
+  ],
+  "pinData": {},
+  "connections": {},
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "be52121c-2875-4417-9271-09826ea7c83f",
+  "meta": {
+    "instanceId": "47b6c29005312cd71f974d85ca071e587d52d442a7ce04e1a418df7382c639ca"
+  },
+  "id": "yqdQ5LQ6sh98SxqX",
+  "tags": []
+}

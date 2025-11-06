@@ -1,0 +1,102 @@
+{
+  "name": "CLASSIFICAÇÃO DE TEXTO",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        48
+      ],
+      "id": "abe42d27-9a79-4979-ab61-67fd9485138c",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "inputText": "\"Recentemente, uma nova ferramenta de inteligência artificial foi lançada, permitindo que programadores desenvolvam aplicativos de forma mais rápida e eficiente. A tecnologia promete revolucionar a maneira como as empresas lidam com dados e automação. Muitos especialistas acreditam que essa inovação trará grandes mudanças no mercado de trabalho e nos processos de desenvolvimento.\"\n",
+        "categories": {
+          "categories": [
+            {
+              "category": "Esporte",
+              "description": "Refere-se a textos relacionados a atividades físicas, jogos, competições, atletas e eventos esportivos. Pode incluir comentários sobre partidas, treinamentos, estratégias ou conquistas em diversas modalidades esportivas."
+            },
+            {
+              "category": "Educação",
+              "description": "Inclui textos que tratam de escolas, ensino, aprendizagem, metodologias pedagógicas, currículos, professores, alunos e qualquer tópico relacionado ao processo educacional."
+            },
+            {
+              "category": "Tecnologia",
+              "description": "Engloba textos sobre inovações, dispositivos, software, hardware, inteligência artificial, desenvolvimento de aplicativos, gadgets, avanços científicos e tendências tecnológicas."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1.1,
+      "position": [
+        -192,
+        32
+      ],
+      "id": "dabade2a-78d1-46f0-b39f-9fe5de7b7961",
+      "name": "Text Classifier"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-120b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        -192,
+        208
+      ],
+      "id": "2b1bf88d-3846-4d63-8999-985459f003cb",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "QDCPtDhsHPkXkyVR",
+          "name": "Groq account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ba9f4f68-1415-4e25-9a72-b6f997e8e96d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "47b6c29005312cd71f974d85ca071e587d52d442a7ce04e1a418df7382c639ca"
+  },
+  "id": "SOC8VTSrlHYcjNqa",
+  "tags": []
+}

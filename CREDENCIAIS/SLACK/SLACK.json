@@ -1,0 +1,70 @@
+{
+  "name": "SLACK",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "9eac0361-f60b-41f8-b840-142b6c326759",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C09R3HG2GKV",
+          "mode": "list",
+          "cachedResultName": "social"
+        },
+        "text": "Olá, mundo!!",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "f3bfca55-4661-43be-88a6-551f9ed7b586",
+      "name": "Send a message",
+      "webhookId": "4910ffdc-1a66-4f9f-836c-4572f98e7009",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "WyybRchK3oy2CWPE",
+          "name": "Slack account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "6c073bb3-7aed-40be-b32c-8c713301332c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "47b6c29005312cd71f974d85ca071e587d52d442a7ce04e1a418df7382c639ca"
+  },
+  "id": "9jDZ88nXumngZsdw",
+  "tags": []
+}

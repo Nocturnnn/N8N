@@ -1,0 +1,295 @@
+{
+  "name": "ENVIAR PLANILHA COM EMAILS CORPORATIVOS",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        32
+      ],
+      "id": "4273aed1-0122-4648-b010-84d9ada6d30c",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1CTlDd1EaukRc9IZXSrYLhY3IcgUmwJXF7Eqvn2KqN8k",
+          "mode": "list",
+          "cachedResultName": "Planilha_Livro",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CTlDd1EaukRc9IZXSrYLhY3IcgUmwJXF7Eqvn2KqN8k/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 206139128,
+          "mode": "list",
+          "cachedResultName": "Planilha1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CTlDd1EaukRc9IZXSrYLhY3IcgUmwJXF7Eqvn2KqN8k/edit#gid=206139128"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -32,
+        32
+      ],
+      "id": "a88be6cb-0a02-41a2-9c1c-dbccea9d21fc",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0KQfn7HyNoFh5eWv",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "beaa8690-f512-4277-a89a-68b8943e639e",
+              "name": "Título do Livro",
+              "value": "={{ $json['Título do Livro'] }}",
+              "type": "string"
+            },
+            {
+              "id": "9fbc81a5-2f3d-415d-a42b-1905292e5c47",
+              "name": "Preço (R$)",
+              "value": "={{ $json['Preço (R$)'] }}",
+              "type": "number"
+            },
+            {
+              "id": "f6d6a222-18ce-4211-bfe7-5c136a8b67f1",
+              "name": "Autor\\Gênero",
+              "value": "={{ $json.Autor }} - {{ $json['Gênero'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        160,
+        -80
+      ],
+      "id": "2235f436-6ee4-4a43-967c-c0d149338156",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7bf04f2c-e6dd-415b-8584-0f51f1dc6b2f",
+              "leftValue": "={{ $json.Autor }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        160,
+        144
+      ],
+      "id": "ffd3132b-d753-4b85-a401-1e62c9714f26",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "32028118-dc3c-488c-b150-1cfdec3ff509",
+              "leftValue": "={{ $json.Email }}",
+              "rightValue": "@livraria",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        320,
+        144
+      ],
+      "id": "8d4a3e8d-3478-4fcb-9f71-055f8ee1ef6a",
+      "name": "Se há emails corporativos"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        528,
+        240
+      ],
+      "id": "48259e5c-78ef-429d-b6b3-6459e0c08b46",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "Autor"
+            },
+            {
+              "fieldToAggregate": "Email"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        528,
+        48
+      ],
+      "id": "fefc7076-142b-4b69-91c3-2067c481aa87",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C09R3HG2GKV",
+          "mode": "list",
+          "cachedResultName": "social"
+        },
+        "text": "=Novos autores adicionados {{ $json.Autor }} com seus respectivos email: {{ $json.Email }}",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        736,
+        48
+      ],
+      "id": "e810b3db-be1e-4b27-beab-6abff92264cc",
+      "name": "Send a message",
+      "webhookId": "d9bd143d-66be-4322-877e-c39a61e82697",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "WyybRchK3oy2CWPE",
+          "name": "Slack account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Se há emails corporativos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Se há emails corporativos": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "6a57a7ab-9234-45e7-b819-7df3bdb7b3c9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "47b6c29005312cd71f974d85ca071e587d52d442a7ce04e1a418df7382c639ca"
+  },
+  "id": "7PPOXDe9IWN4bHVE",
+  "tags": []
+}

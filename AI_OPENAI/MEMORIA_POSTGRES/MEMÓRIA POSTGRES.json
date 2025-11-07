@@ -1,0 +1,116 @@
+{
+  "name": "MEMÓRIA POSTGRES",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "6dffba18-90d1-4041-9f63-13ba318a9a64",
+      "name": "When chat message received",
+      "webhookId": "a108987e-4d19-4c98-a1ef-1a95fb11cfe3"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "4cc73fe6-8ae8-41ec-b572-3c97696e0b57",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-20b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        176,
+        176
+      ],
+      "id": "6581c7d9-c8f5-4666-863c-67cf830688da",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "QDCPtDhsHPkXkyVR",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        304,
+        176
+      ],
+      "id": "7b8994c4-969b-4027-812b-7164df67cbe0",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "DqAdaKMgSsOhuNIr",
+          "name": "Postgres account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "82676d51-8ce4-4c60-ab80-f422c7048013",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "47b6c29005312cd71f974d85ca071e587d52d442a7ce04e1a418df7382c639ca"
+  },
+  "id": "QaP0WkOcFAIYfKrI",
+  "tags": []
+}

@@ -1,0 +1,28 @@
+CREATE TABLE games (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    genre VARCHAR(50) NOT NULL,
+    platform VARCHAR(50),
+    release_date DATE,
+    developer VARCHAR(100),
+    rating DECIMAL(3, 1),
+    stock INT DEFAULT 0
+);
+
+INSERT INTO games (name, price, genre, platform, release_date, developer, rating, stock) VALUES
+('Aventura no Sertão', 59.90, 'Aventura', 'PC', '2023-05-12', 'Estúdio Caatinga', 8.5, 25),
+('Corrida Selvagem', 89.99, 'Corrida', 'PlayStation 5', '2022-11-22', 'SpeedBR Games', 7.8, 40),
+('Guerra dos Reinos', 199.90, 'Ação', 'Xbox Series X', '2024-03-10', 'Titan Games', 9.1, 15),
+('Mistério da Floresta', 49.90, 'Suspense', 'PC', '2021-09-30', 'Verde Games', 8.2, 30),
+('Cidade Cyber', 149.90, 'RPG', 'PC', '2020-12-10', 'Neon Studio', 7.4, 10),
+('Futebol Total 2025', 249.90, 'Esporte', 'PlayStation 5', '2025-06-01', 'FutGames', 8.9, 50),
+('Batalha das Lendas', 139.99, 'Luta', 'Xbox Series X', '2023-08-18', 'Combat Brasil', 7.6, 20),
+('Ilha dos Zumbis', 99.90, 'Terror', 'PC', '2022-10-31', 'Terror Studio', 6.8, 5),
+('Mundo Encantado', 79.99, 'Plataforma', 'Nintendo Switch', '2021-03-15', 'Alegria Digital', 9.0, 35),
+('Simulador de Fazendas', 59.99, 'Simulação', 'PC', '2020-07-20', 'AgroSoft', 7.5, 18),
+('Espaço Infinito', 189.90, 'Ficção Científica', 'PlayStation 5', '2024-01-05', 'Galaxia Studios', 8.7, 22),
+('Guerreiros do Tempo', 129.90, 'Estratégia', 'PC', '2023-02-28', 'Chrono Devs', 8.3, 27),
+('Dança Brasil', 69.90, 'Música', 'Nintendo Switch', '2021-11-11', 'Studio Samba', 7.9, 16),
+('Corrida Retro', 39.90, 'Arcade', 'PC', '2019-06-22', 'Pixel Oldies', 6.5, 12),
+('Monstros da Lenda', 159.90, 'RPG', 'Xbox Series X', '2024-09-09', 'Myth Studio', 8.6, 19);

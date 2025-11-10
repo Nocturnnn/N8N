@@ -1,0 +1,55 @@
+Agentes de IA (ou "AI Agents") são sistemas inteligentes que tomam decisões ou realizam ações automaticamente para atingir um objetivo, geralmente usando modelos de inteligência artificial, como o GPT (por exemplo, o que você está usando agora).
+
+Vamos dividir de forma simples 👇
+
+🧠 Definição básica
+
+Um agente de IA é um programa que:
+
+Percebe o ambiente (lendo dados, inputs, mensagens, sensores etc.);
+
+Raciocina (usa IA para interpretar e decidir o que fazer);
+
+Age (toma ações automáticas — como enviar uma mensagem, executar um comando ou atualizar um sistema).
+
+⚙️ Exemplo simples
+
+Imagine um assistente virtual conectado ao seu e-mail e calendário:
+
+Ele percebe que você recebeu um convite de reunião.
+
+Ele analisa sua agenda e vê se há conflito.
+
+Ele responde automaticamente confirmando ou sugerindo outro horário.
+
+👉 Isso é um agente de IA: ele pensa e age sem precisar que você diga cada passo.
+
+🧩 Tipos comuns de agentes
+Tipo	O que faz	Exemplo
+Reativo	Responde a situações sem planejar	Chatbots simples
+Baseado em metas	Age para atingir um objetivo	Um robô que limpa até o chão estar limpo
+Baseado em aprendizado	Aprende com a experiência	IA que melhora com o uso
+Multiagente	Vários agentes cooperando	Agentes de IA que conversam entre si para resolver tarefas complexas
+💡 Aplicações práticas
+
+Automação de tarefas (como no N8N com IA integrada)
+
+Atendimento ao cliente inteligente
+
+Bots de investimento
+
+Assistentes pessoais (como ChatGPT com ações externas)
+
+Gerenciamento de sistemas e dados
+
+IA autônoma em jogos, robôs ou sistemas operacionais inteligentes
+
+🚀 O futuro dos agentes de IA
+
+O avanço atual (como o “AutoGPT”, “OpenAI o1” ou “Devin AI”) está levando a agentes autônomos, capazes de:
+
+Definir objetivos próprios (dentro de limites);
+
+Usar ferramentas (navegador, código, planilhas etc.);
+
+Cooperar com outros agentes para resolver problemas complexos.

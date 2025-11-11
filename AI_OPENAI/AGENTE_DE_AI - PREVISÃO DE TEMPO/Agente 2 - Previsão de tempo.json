@@ -1,0 +1,192 @@
+{
+  "name": "Agente 2 - Previsão de tempo",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "482f4dc0-ed00-4ec5-b114-89fbd7e9e997",
+      "name": "When chat message received",
+      "webhookId": "1a401b6c-21da-45ac-b380-c41bea109ce2"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Você é um assistente especializado em previsão de tempo. Sempre que o usuário solicitar informações sobre condições climáticas ou previsão do tempo, utilize a ferramenta de Previsao_Tempo para fornecer os dados mais atualizados. Caso o usuário peça informações que não envolvem o clima como questões histórica, cientificas ou geográficas, utilize a ferramenta do Wikipedia para responder adequadamente se necessário."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "0323ee83-809f-4421-a239-5fa5371ec79e",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-nano",
+          "mode": "list",
+          "cachedResultName": "gpt-5-nano"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        160,
+        192
+      ],
+      "id": "03418e91-3811-4863-88fa-0cb7759f683f",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "JOqLvfTuYC8xacam",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        304,
+        192
+      ],
+      "id": "8497990c-fd79-4269-b5ef-045d4e2085ce",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolWikipedia",
+      "typeVersion": 1,
+      "position": [
+        432,
+        192
+      ],
+      "id": "0d61537b-a2da-4865-8f64-f74c8c46046f",
+      "name": "Wikipedia"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "Ti3YLytmX9bWDFHD",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/Ti3YLytmX9bWDFHD",
+          "cachedResultName": "API - Previsão do tempo"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "city": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('city', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "city"
+          ],
+          "schema": [
+            {
+              "id": "city",
+              "displayName": "city",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        560,
+        192
+      ],
+      "id": "2223ddbe-8f69-4cca-af1e-5d1c4581842a",
+      "name": "Previsao_Tempo"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wikipedia": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Previsao_Tempo": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "6c4071fd-d7a8-4dc9-bb19-ac9200fd8218",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "47b6c29005312cd71f974d85ca071e587d52d442a7ce04e1a418df7382c639ca"
+  },
+  "id": "AUTskX6nsDqB5p1Z",
+  "tags": []
+}

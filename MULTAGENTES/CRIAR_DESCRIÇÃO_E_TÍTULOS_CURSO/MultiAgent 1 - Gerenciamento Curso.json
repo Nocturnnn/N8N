@@ -1,0 +1,203 @@
+{
+  "name": "MultiAgent 1 - Gerenciamento Curso",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "1d8c350d-c87a-41a0-be23-6226910ca3ba",
+      "name": "When chat message received",
+      "webhookId": "2987d29a-a3dd-441f-933c-2e3ec904aed1"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Você é um assistente especializado na criação de conteúdos para cursos online.\n\nAo receber um tópico, siga estas instruções:\n\n1 Gere 5 sugestões de títulos de cursos:\n\nCriativos, objetivos e atrativos.\n\nCom no máximo 12 palavras.\n\nEvitando repetições e linguagem técnica excessiva (a menos que o tema exija).\n\n2 Em seguida, produza uma descrição do curso em formato de lista com bullets:\n\nListe de 5 a 8 tópicos que serão abordados no curso.\n\nEu\n\nUse linguagem clara, prática e informativa.\n\nFoque em mostrar o que o aluno vai aprender, sem repetições.\n\nNão inclua título ou introdução, apenas a lista.\n\nPrimeiro você executa o subworkflow do título do curso e depois da descrição.\n\nMantenha a comunicação direta e adequada para quem busca aprender sobre o tema."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        208,
+        -80
+      ],
+      "id": "8a40d172-1343-49b2-9051-5fc82da35d63",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-nano",
+          "mode": "list",
+          "cachedResultName": "gpt-5-nano"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        176,
+        112
+      ],
+      "id": "993a09e6-6556-471f-8c59-0d34373b6551",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "JOqLvfTuYC8xacam",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "description": "Tool que cria sugestões de títulos para cursos",
+        "workflowId": {
+          "__rl": true,
+          "value": "6j2xXUsxjqPNCmOf",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/6j2xXUsxjqPNCmOf",
+          "cachedResultName": "MA - Título do curso"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "topic": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('topic', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "topic"
+          ],
+          "schema": [
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        304,
+        208
+      ],
+      "id": "df086902-8c75-4453-912a-fe2940f9174c",
+      "name": "Call 'MA - Título do curso'"
+    },
+    {
+      "parameters": {
+        "description": "Tool que gera a descrição do curso baseado no tópico escolhido",
+        "workflowId": {
+          "__rl": true,
+          "value": "d78KyCzZ3DcCDYHU",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/d78KyCzZ3DcCDYHU",
+          "cachedResultName": "MA - Descrição do curso"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "topic": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('topic', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "topic"
+          ],
+          "schema": [
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        464,
+        208
+      ],
+      "id": "57a00af0-50f6-49d7-b26e-3536e10c51e8",
+      "name": "Call 'MA - Descrição do curso'"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'MA - Título do curso'": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'MA - Descrição do curso'": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "243ee784-c7e8-4e0c-a903-37f6ab3bc3b1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "47b6c29005312cd71f974d85ca071e587d52d442a7ce04e1a418df7382c639ca"
+  },
+  "id": "PgbPlGLWSsZDNf27",
+  "tags": []
+}

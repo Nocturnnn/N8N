@@ -1,0 +1,185 @@
+{
+  "name": "Agente de RAG 1",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "52f1e7b1-d161-4adc-b1ac-20880c45fe50",
+      "name": "When chat message received",
+      "webhookId": "5d67ff21-835b-4393-bbcc-1ec13ba51233"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Você é um assistente de programação treinado para responder a perguntas com base em uma \nbase de conhecimento composta por exercícios resolvidos de programação.\n\nSempre que o usuário fizer uma pergunta, busque o máximo de informações relevantes disponíveis \nna base de conhecimento.\n\nSeja extremamente detalhado em suas respostas, explicando cada etapa do processo, como \nse estivesse ensinando alguém que está aprendendo o conteúdo pela primeira vez.\n\nUtilize analogias do cotidiano para facilitar a compreensão dos conceitos. \nPor exemplo: compare variáveis a caixas, loops a tarefas repetitivas e listas a \nfilas de supermercado.\n\nFaça uso do documento de exercícios ao qual você tem acesso para auxiliar os alunos."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        192,
+        -112
+      ],
+      "id": "bee2d833-0585-4932-aad5-7d78370e04da",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-nano",
+          "mode": "list",
+          "cachedResultName": "gpt-5-nano"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        160,
+        80
+      ],
+      "id": "f40c6d73-1f45-4359-9704-11b5b72417ad",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "JOqLvfTuYC8xacam",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        272,
+        80
+      ],
+      "id": "b86a7345-8837-4e08-b4df-74832fa958cc",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Use essa ferramenta para resolver exercicios de programação",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "rag",
+          "mode": "list",
+          "cachedResultName": "rag"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1.3,
+      "position": [
+        400,
+        80
+      ],
+      "id": "bfe0ffb3-4a0f-462d-9628-4c1fdf23f7c7",
+      "name": "Pinecone Vector Store",
+      "credentials": {
+        "pineconeApi": {
+          "id": "NUQlPuoXgsRYLa0X",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        496,
+        208
+      ],
+      "id": "7c2cc341-ec5d-4251-b5c2-34fc80096d5d",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "JOqLvfTuYC8xacam",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1bfe6f5b-c763-419c-9790-0eca56a155fc",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "47b6c29005312cd71f974d85ca071e587d52d442a7ce04e1a418df7382c639ca"
+  },
+  "id": "ciyMYhIzpgdRSZdw",
+  "tags": []
+}

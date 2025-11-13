@@ -1,0 +1,343 @@
+{
+  "name": "MULTAGENTE - GERA CONTEÚDOS LINKEDIN",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Gerador de Post no Linkedin",
+        "formDescription": "Preencha os dados para criar o texto e a imagem do post",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Assunto do Artigo ",
+              "placeholder": "O que deseja abordar?"
+            },
+            {
+              "fieldLabel": "Orientações Adicionais",
+              "fieldType": "textarea",
+              "placeholder": "Detalhes de como deve ser a postagem"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -320,
+        16
+      ],
+      "id": "13424301-41ab-436c-8c45-a97a86498699",
+      "name": "On form submission",
+      "webhookId": "7c861c52-cfbe-4e26-aa91-e3aad66ab702"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Assunto do post:  {{ $json['Assunto do Artigo '] }}\n\nOrientações para a postagem: {{ $json['Orientações Adicionais'] }}",
+        "options": {
+          "systemMessage": "Você é um agente de IA especializado na criação de posts profissionais e educativos para o LinkedIn, com base em um tópico fornecido pelo usuário.\n\n# Objetivos:\n\nPesquise informações atualizadas usando a ferramenta Tavily.\n\nCrie um post com:\n\nIntrodução Envolvente\n\nTexto claro e fácil de ler\n\nCitação de fontes (exemplo: \"segundo [fonte]\")\n\nHashtags relevantes no final\n\n# Requisitos de Saída:\n\nDeve ser retornado o texto final do post para o LinkedIn\n\nNão inclua explicações, comentários ou notas adicionais\n\n# Etapas Esperadas:\n\n1. Receba o tópico do usuário\n\n2. Pesquise sobre o tema no Tavily\n\n3. Gere o post com base nas informações encontradas"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -96,
+        -80
+      ],
+      "id": "8ad755b7-d30a-4ceb-b7be-0c9bef9b6491",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-nano",
+          "mode": "list",
+          "cachedResultName": "gpt-5-nano"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -96,
+        112
+      ],
+      "id": "66f1ded2-a184-49ea-bc62-85eec84d99a5",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "JOqLvfTuYC8xacam",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Query', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "@tavily/n8n-nodes-tavily.tavilyTool",
+      "typeVersion": 1,
+      "position": [
+        48,
+        112
+      ],
+      "id": "349da967-513c-4af8-aebc-2ad572a24417",
+      "name": "Search in Tavily",
+      "credentials": {
+        "tavilyApi": {
+          "id": "yHNHu1pTed3XqMze",
+          "name": "Tavily account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Geração de Post",
+        "height": 224,
+        "width": 304
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -128,
+        -128
+      ],
+      "typeVersion": 1,
+      "id": "12239910-cbce-47e1-b251-9c18debc68a3",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Texto do post que deve gerar a imagem:  {{ $json.output }}",
+        "options": {
+          "systemMessage": "=Você é um agente de inteligência artificial especializado na geração de imagens a partir de descrições textuais detalhadas.\n\nSeu papel é interpretar cuidadosamente as solicitações dos usuários e transformar suas descrições em instruções claras e visuais para gerar imagens realistas, artísticas ou conceituais, conforme o pedido.\n\nVocê deve informar somente uma imagem objetiva de sua escolha para ser gerada.\n\nRegras e comportamento:\n1. Seja curto e objetivo sem fugir do assunto\n2. Mantenha um tom profissional, criativo e inspirador.\n3. Gere uma resposta organizada e curta, focando na clareza da ideia visual.\n4. Nunca gere conteúdo ofensivo, explícito ou que viole diretrizes éticas.\n\nObjetivo:\n- Converter qualquer descrição textual do usuário em uma representação visual clara e rica em detalhes.\n- Ajudar na criação de imagens para fins artísticos, publicitários, educacionais ou conceituais.\n\nVocê é, portanto, um agente de IA **especializado em transformar palavras em imagens**, utilizando raciocínio visual e descritivo para criar prompts e ideias de composição.\n\nvocê deve informar somente uma imagem de sua escolha para ser gerada."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        256,
+        -224
+      ],
+      "id": "89ea0a8b-4188-4781-ba6e-e2ba2d959c45",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-nano",
+          "mode": "list",
+          "cachedResultName": "gpt-5-nano"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        256,
+        -48
+      ],
+      "id": "978a4f21-b601-4ba2-ae12-9fbc8dc27bfd",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "JOqLvfTuYC8xacam",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "=Imagem - {{ $now.format('dd-MM-yyyy') }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        592,
+        -80
+      ],
+      "id": "57bcd576-c412-455a-b945-336d47af208e",
+      "name": "Create folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "pGRskFu5DiIkTXnt",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/images/generations",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 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"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "gpt-image-1"
+            },
+            {
+              "name": "prompt",
+              "value": "={{ $('AI Agent1').item.json.output }}"
+            },
+            {
+              "name": "size",
+              "value": "1024x1024"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        800,
+        -80
+      ],
+      "id": "fbe96c22-53e9-426a-aa4d-0077f390f7a3",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data[0].b64_json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1008,
+        -80
+      ],
+      "id": "0ff67c2f-ba34-4ab6-8f3b-1a95c4355ba8",
+      "name": "Convert to File"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search in Tavily": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Create folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create folder": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "e34cacf6-1cfa-42b1-a2b1-b6cb31f760cc",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "47b6c29005312cd71f974d85ca071e587d52d442a7ce04e1a418df7382c639ca"
+  },
+  "id": "NLRao47icIDtXi2P",
+  "tags": []
+}

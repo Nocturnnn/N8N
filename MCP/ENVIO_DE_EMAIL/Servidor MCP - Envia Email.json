@@ -1,0 +1,101 @@
+{
+  "name": "Servidor MCP - Envia Email",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "dc855b6c-1552-4279-8998-f4565873d4c8"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "6f2b5570-0613-4a80-894d-82210a139c3a",
+      "name": "MCP Server Trigger",
+      "webhookId": "dc855b6c-1552-4279-8998-f4565873d4c8"
+    },
+    {
+      "parameters": {
+        "sendTo": "matapachi128@gmail.com",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        16,
+        176
+      ],
+      "id": "61d8c7d4-0946-493e-8cd9-b199ce814a4d",
+      "name": "Send a message in Gmail",
+      "webhookId": "f867543a-638d-45fc-af9f-4ddf9429c271",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gWtxkclxZD3hHV8S",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        160,
+        176
+      ],
+      "id": "1a21d1dc-bf45-4f70-9f59-609e78cb946e",
+      "name": "Create a draft in Gmail",
+      "webhookId": "387c103e-35c3-49dc-ada4-162ec5006bde",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gWtxkclxZD3hHV8S",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a draft in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "aa7b1815-3492-4355-92e1-9ac661c4e122",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "47b6c29005312cd71f974d85ca071e587d52d442a7ce04e1a418df7382c639ca"
+  },
+  "id": "Is0iWKghzFmyZ4ni",
+  "tags": []
+}

@@ -1,0 +1,89 @@
+No n8n, “MCP” significa Model Context Protocol — um padrão criado pela OpenAI para permitir que IA (como GPT-4.1, GPT-5, etc.) se conecte de forma segura e estruturada a ferramentas externas, como:
+
+bancos de dados
+
+APIs
+
+automações
+
+servidores
+
+scripts
+
+integrações personalizadas
+
+📌 Em outras palavras
+
+O MCP é um protocolo que permite que seu agente de IA “converse” com ferramentas reais e execute ações, ler dados, escrever em sistemas, chamar APIs... tudo com segurança e controle.
+
+O n8n adicionou suporte ao MCP para que você possa:
+
+🔧 Para que serve MCP no n8n?
+
+No n8n, o MCP permite que você:
+
+✅ 1. Conecte GPT diretamente ao seu n8n
+
+Você pode transformar qualquer workflow do n8n em uma ferramenta MCP, e a IA pode chamar esse workflow automaticamente.
+
+Exemplo:
+“Busque pedidos atrasados no meu banco de dados e me envie um resumo.”
+→ O modelo usa MCP para acionar o workflow que faz essa busca.
+
+✅ 2. Criar ferramentas que a IA utiliza como funções
+
+Cada workflow pode virar uma ferramenta, e a IA consegue:
+
+enviar parâmetros
+
+receber respostas estruturadas
+
+executar ações reais
+
+✅ 3. Integrar IA com sistemas sem expor suas credenciais
+
+O protocolo garante:
+
+isolamento
+
+controle de permissões
+
+logs de chamadas
+
+segurança
+
+✅ 4. Substituir agentes complicados
+
+Com o MCP, você não precisa construir um agente inteiro — o modelo já sabe como chamar ferramentas.
+
+🧠 Diferente de API normal?
+
+Sim:
+
+API Tradicional	MCP
+Você faz requisições com código	A IA chama ferramentas automaticamente
+Precisa programar	Fluxo visual
+Você define endpoints	Você cria ferramentas e o modelo usa
+Sem contexto nativo	O modelo entende o que a ferramenta faz
+📦 Exemplo simples no n8n
+
+Você cria um workflow chamado getWeather → vira uma ferramenta MCP.
+
+O agente pode escrever:
+
+“Qual a temperatura agora em São Paulo?”
+
+O modelo decide:
+→ usar a ferramenta getWeather
+→ passar a cidade como parâmetro
+→ enviar a resposta tratada ao usuário
+
+🚀 Por que isso é grande?
+
+Porque agora:
+
+qualquer pessoa pode criar “poderes” para a IA sem programar
+
+você transforma o n8n em um backend inteligente
+
+os modelos ficam atualizados, pois executam ações usando seus fluxos

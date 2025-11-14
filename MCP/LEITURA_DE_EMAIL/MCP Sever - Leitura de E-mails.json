@@ -1,0 +1,72 @@
+{
+  "name": "MCP Sever - Leitura de E-mails",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "6784b766-fc9c-4e64-92a4-bd8cff4467fe"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        32,
+        -112
+      ],
+      "id": "939e6de4-a7d7-4c05-a309-84d6b2449fcc",
+      "name": "MCP Server Trigger",
+      "webhookId": "6784b766-fc9c-4e64-92a4-bd8cff4467fe"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 5,
+        "filters": {
+          "labelIds": [
+            "INBOX"
+          ],
+          "receivedAfter": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Received_After', ``, 'string') }}",
+          "receivedBefore": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Received_Before', ``, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        48,
+        64
+      ],
+      "id": "6bb0d595-5835-4ff5-b562-0131f9146653",
+      "name": "Busca E-mails",
+      "webhookId": "9f9982f2-763f-4fc0-b223-0c82a3fc082a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gWtxkclxZD3hHV8S",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Busca E-mails": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "c1d71c60-143a-4841-826c-76bf57cb394c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "47b6c29005312cd71f974d85ca071e587d52d442a7ce04e1a418df7382c639ca"
+  },
+  "id": "UxnLlGan769ANlNB",
+  "tags": []
+}
